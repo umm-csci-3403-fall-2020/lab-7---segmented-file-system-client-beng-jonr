@@ -3,9 +3,14 @@ package packet;
 public abstract class Packet {
     
     private Byte fileId;
+    protected Byte[] bodyData;
 
     public Byte getFileId() {
         return fileId;
+    }
+
+    public Byte[] getBodyData() {
+        return bodyData;
     }
 
     protected Packet(Byte fileId) {
