@@ -60,7 +60,10 @@ public class FileBuilderTest {
             testBuilder.addBody(body);
         }
 
-        assertArrayEquals(toAdd, (BodyPacket[])testBuilder.fileData.toArray());
+        //assertArrayEquals(toAdd, (BodyPacket[])testBuilder.fileData.toArray());
+        for(int i = 0; i < 5; i++){
+            assertEquals(toAdd[i], (BodyPacket)testBuilder.fileData.toArray()[i]);
+        }
     }
 
     @Test
@@ -107,7 +110,10 @@ public class FileBuilderTest {
             testBuilder.addPacket(body);
         }
 
-        assertArrayEquals(toAdd, (BodyPacket[])testBuilder.fileData.toArray());
+        //assertArrayEquals(toAdd, (BodyPacket[])testBuilder.fileData.toArray());
+        for(int i = 0; i < 5; i++){
+            assertEquals(toAdd[i], (BodyPacket)testBuilder.fileData.toArray()[i]);
+        }
     }
 
     @Test
@@ -132,7 +138,10 @@ public class FileBuilderTest {
         testBuilder.addPacket(header);
 
         assertEquals("testName", testBuilder.getFileName());
-        assertArrayEquals(toAdd, (BodyPacket[])testBuilder.fileData.toArray());
+        //assertArrayEquals(toAdd, (BodyPacket[])testBuilder.fileData.toArray());
+        for(int i = 0; i < 5; i++){
+            assertEquals(toAdd[i], (BodyPacket)testBuilder.fileData.toArray()[i]);
+        }
     }
 
     @Test

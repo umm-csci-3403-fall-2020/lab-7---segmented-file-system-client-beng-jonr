@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 public class FileBuilder {
     protected PriorityQueue<BodyPacket> fileData = new PriorityQueue<BodyPacket>((BodyPacket x, BodyPacket y) ->  {return x.getPacketNumber() - y.getPacketNumber(); });
     protected String fileName;
-    int numBytes = 0;
+    int numPackets = 0;
 
     public FileBuilder() {
 
@@ -28,6 +28,10 @@ public class FileBuilder {
     }
 
     protected boolean addBody(BodyPacket p){
+        if(p.isFinal()){
+            numPackets = p.getPacketNumber() + 1;
+        }
+        fileData.add(p);
 
         return true;
     }
