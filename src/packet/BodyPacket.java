@@ -10,6 +10,12 @@ public class BodyPacket extends Packet {
         this.packetNumber = packetNumber;
     }
 
+    protected BodyPacket(Byte fileId, int packetNumber, boolean isFinal) {
+        super(fileId);
+        this.packetNumber = packetNumber;
+        this.isFinal = isFinal;
+    }
+
     public int getPacketNumber(){
         return packetNumber;
     }

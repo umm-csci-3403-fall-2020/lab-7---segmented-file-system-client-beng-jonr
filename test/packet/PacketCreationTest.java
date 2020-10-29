@@ -146,7 +146,7 @@ public class PacketCreationTest {
         dummyInput.setLength(1028);
 
         Packet createdPacket = PacketFactory.parsePacket(dummyInput);
-        assertEquals("Correct body is maintained", bodyValue, createdPacket.getBodyData());
+        assertArrayEquals("Correct body is maintained", bodyValue, createdPacket.getBodyData());
         assertEquals("Correct packet number is maintained", packetNumber, ((BodyPacket)createdPacket).getPacketNumber());
         assertTrue("The created packet should have file id 1", createdPacket.getFileId() == new Integer(1).byteValue());
 
@@ -174,10 +174,9 @@ public class PacketCreationTest {
         dummyInput.setLength(dataSize + 4);
 
         Packet createdPacket = PacketFactory.parsePacket(dummyInput);
-        assertEquals("Correct body is maintained", bodyValue, createdPacket.getBodyData());
+        assertArrayEquals("Correct body is maintained", bodyValue, createdPacket.getBodyData());
         assertEquals("Correct packet number is maintained", packetNumber, ((BodyPacket)createdPacket).getPacketNumber());
         assertTrue("The created packet should have file id 1", createdPacket.getFileId() == new Integer(1).byteValue());
-
     }
 }
 

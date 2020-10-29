@@ -2,18 +2,18 @@ package packet;
 
 public abstract class Packet {
     
-    private Byte fileId;
-    protected Byte[] bodyData;
+    private byte fileId;
+    protected byte[] bodyData;
 
-    public Byte getFileId() {
+    public byte getFileId() {
         return fileId;
     }
 
-    public Byte[] getBodyData() {
+    public byte[] getBodyData() {
         return bodyData;
     }
 
-    protected Packet(Byte fileId) {
+    protected Packet(byte fileId) {
         this.fileId = fileId;
     }
 
