@@ -12,12 +12,18 @@ public class FileBuilder {
     }
 
     public boolean addPacket(Packet p){
+        if (p instanceof HeaderPacket) {
+            addHeader((HeaderPacket) p);
+        } else if (p instanceof BodyPacket){
+            addBody((BodyPacket) p);
+        }
 
         return true;
     }
 
     protected boolean addHeader(HeaderPacket p){
 
+        fileName = p.getFileName();
         return true;
     }
 
