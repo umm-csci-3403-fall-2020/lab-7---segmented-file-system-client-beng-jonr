@@ -146,7 +146,28 @@ public class FileBuilderTest {
 
     @Test
     public void returnFullBodyData(){
-        fail(); // Currently have no clue how to write the code for testing, because it is in some ways similar
-                // to the code for actually doing the task.
+        FileBuilder testBuilder = new FileBuilder();
+        Random r = new Random();
+
+        byte[] fileData = new byte[1024];
+        BodyPacket[] toAdd = new BodyPacket[5];
+        byte[][] allAdded = new byte[5][1024];
+
+        for(int i = 0; i < 5; i++){
+            r.nextBytes(fileData);
+        
+            BodyPacket body = new BodyPacket(new Integer(0).byteValue(), i, i == 4);
+            body.bodyData = fileData;
+            
+            toAdd[i] = body;
+            allAdded[i] = fileData;
+            testBuilder.addBody(body);
+        }
+
+        byte[][] fileBody = testBuilder.getFileBody();
+        for (int i = 0; i < 5; i++){
+            assertArrayEquals(allAdded[i], fileBody[i]);
+        }
+
     }
 }

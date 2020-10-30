@@ -36,7 +36,7 @@ public class FileBuilder {
         return true;
     }
 
-    public byte[] getFileBody(){
+    public byte[][] getFileBody(){
 
         return null;
     }
