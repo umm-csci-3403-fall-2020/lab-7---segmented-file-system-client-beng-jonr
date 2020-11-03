@@ -152,7 +152,9 @@ public class FileBuilderTest {
         byte[] fileData = new byte[1024];
         BodyPacket[] toAdd = new BodyPacket[5];
         byte[][] allAdded = new byte[5][1024];
+        //byte[] allAdded = new byte[1024*5];
 
+        int position = 0;
         for(int i = 0; i < 5; i++){
             r.nextBytes(fileData);
         
@@ -160,14 +162,24 @@ public class FileBuilderTest {
             body.bodyData = fileData;
             
             toAdd[i] = body;
+            //allAdded[i] = fileData;
+            //System.arraycopy(fileData, 0, allAdded, position, 1024);
+            //position += 1024;
             allAdded[i] = fileData;
             testBuilder.addBody(body);
         }
 
+        byte[][] outputData = testBuilder.getFileBody();
+        assertEquals(5, outputData.length);
+        for(int i = 0; i < outputData.length; i++) {
+            assertArrayEquals(allAdded[i], outputData[i]);
+        }
+        /*
         byte[][] fileBody = testBuilder.getFileBody();
         for (int i = 0; i < 5; i++){
             assertArrayEquals(allAdded[i], fileBody[i]);
         }
+        */
 
     }
 }

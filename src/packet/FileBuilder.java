@@ -1,6 +1,8 @@
 package packet;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
+import java.util.stream.Stream;
 
 public class FileBuilder {
     protected PriorityQueue<BodyPacket> fileData = new PriorityQueue<BodyPacket>((BodyPacket x, BodyPacket y) ->  {return x.getPacketNumber() - y.getPacketNumber(); });
@@ -36,9 +38,13 @@ public class FileBuilder {
         return true;
     }
 
-    public byte[][] getFileBody(){
+    public byte[][] getFileBody() {
 
-        return null;
+        return fileData.stream()
+            .map((BodyPacket x) -> x.getBodyData())
+            .toArray(byte[][]::new);
+
+
     }
 
     public boolean isComplete(){
