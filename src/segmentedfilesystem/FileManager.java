@@ -1,6 +1,8 @@
 package segmentedfilesystem;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 import packet.FileBuilder;
@@ -38,6 +40,24 @@ public class FileManager {
         
         
         return false; // Placeholder
+    }
+
+    public class fileBuilderThread implements Runnable {
+        FileBuilder buildFrom;
+
+        public fileBuilderThread(FileBuilder builder) {
+            this.buildFrom = builder;
+        }
+
+        @Override
+        public void run() {
+            try {
+                FileOutputStream outputStream = new FileOutputStream(buildFrom.getFileName(), true);
+                buildFrom.getFileBodyStream().writeTo(outputStream);
+            } catch (IOException e) {
+                System.err.println(e);
+            }
+        }
     }
 
 
