@@ -182,4 +182,26 @@ public class FileBuilderTest {
         */
 
     }
+
+    @Test
+    public void determineCompleteness(){
+        FileBuilder testBuilder = new FileBuilder();
+        Random r = new Random();
+
+        byte[] fileData = new byte[1024];
+
+        assertFalse(testBuilder.isComplete());
+
+        HeaderPacket header = new HeaderPacket(new Integer(0).byteValue(), "testName");
+        testBuilder.addPacket(header);
+
+        for(int i = 0; i < 5; i++) {
+            assertFalse(testBuilder.isComplete());
+
+            r.nextBytes(fileData);
+            BodyPacket body = new BodyPacket(new Integer(0).byteValue(), i, i == 4);
+            testBuilder.addPacket(body);
+        }
+        assertTrue(testBuilder.isComplete());
+    }
 }
