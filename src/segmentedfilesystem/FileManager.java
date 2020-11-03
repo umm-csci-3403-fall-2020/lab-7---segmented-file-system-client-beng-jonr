@@ -46,9 +46,13 @@ public class FileManager {
     }
 
     public boolean isComplete() {
-        
-        
-        return false; // Placeholder
+
+        for(FileBuilder b: files.values()) {
+            if(!(b.isComplete())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public class FileBuilderRunnable implements Runnable {
