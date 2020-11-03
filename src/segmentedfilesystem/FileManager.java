@@ -29,10 +29,11 @@ public class FileManager {
     public boolean addPacket (Packet toAdd){
 
         Byte targetFile = toAdd.getFileId();
-        if(files.putIfAbsent(targetFile, new FileBuilder()).addPacket(toAdd)) {
+        FileBuilder targetedBuilder = files.putIfAbsent(targetFile, new FileBuilder());
+        if(targetedBuilder.addPacket(toAdd)) {
             // putIfAbsent returns the value corresponding to the key provided,
             // and addPacket returns true if the fileBuilder is now done
-            FileBuilderRunnable builderRunnable = new FileBuilderRunnable(files.get(targetFile));
+            FileBuilderRunnable builderRunnable = new FileBuilderRunnable(targetedBuilder);
             Thread writingThread = new Thread(builderRunnable);
             writingThread.start();
         }
@@ -46,6 +47,10 @@ public class FileManager {
     }
 
     public boolean isComplete() {
+
+        if(files.size() != NUM_FILES_EXPECTED) {
+            return false;
+        }
 
         for(FileBuilder b: files.values()) {
             if(!(b.isComplete())) {
