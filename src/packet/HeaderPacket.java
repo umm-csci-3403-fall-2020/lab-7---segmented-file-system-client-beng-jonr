@@ -1,6 +1,6 @@
 package packet;
 
-class HeaderPacket extends Packet {
+public class HeaderPacket extends Packet {
 
     private String fileName;
 
@@ -11,5 +11,9 @@ class HeaderPacket extends Packet {
     protected HeaderPacket (Byte fileId, String fileName) {
         super(fileId);
         this.fileName = fileName;
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 }
