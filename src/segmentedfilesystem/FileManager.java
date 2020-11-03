@@ -27,6 +27,15 @@ public class FileManager {
     }
 
     public boolean addPacket (Packet toAdd){
+
+        Byte targetFile = toAdd.getFileId();
+        if(files.putIfAbsent(targetFile, new FileBuilder()).addPacket(toAdd)) {
+            // putIfAbsent returns the value corresponding to the key provided,
+            // and addPacket returns true if the fileBuilder is now done
+            FileBuilderRunnable builderRunnable = new FileBuilderRunnable(files.get(targetFile));
+            Thread writingThread = new Thread(builderRunnable);
+            writingThread.start();
+        }
         
 
         return true; 
@@ -42,10 +51,10 @@ public class FileManager {
         return false; // Placeholder
     }
 
-    public class fileBuilderThread implements Runnable {
+    public class FileBuilderRunnable implements Runnable {
         FileBuilder buildFrom;
 
-        public fileBuilderThread(FileBuilder builder) {
+        public FileBuilderRunnable(FileBuilder builder) {
             this.buildFrom = builder;
         }
 
