@@ -48,8 +48,9 @@ public class FileBuilder {
     }
 
     public boolean isComplete(){
-
-        return false;
+        return fileName != null
+            && numPackets != 0
+            && fileData.size() == numPackets;
     }
 
     public String getFileName(){
