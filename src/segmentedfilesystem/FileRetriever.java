@@ -20,7 +20,7 @@ public class FileRetriever {
                 // Save the server and port for use in `downloadFiles()`
                 //...
 
-                sock = new DatagramSocket(port);
+                sock = new DatagramSocket();
                 serverName = server;
                 this.port = port;
 	}
