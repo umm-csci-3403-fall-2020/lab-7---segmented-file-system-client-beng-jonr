@@ -9,7 +9,7 @@ import packet.Packet;
 
 public class FileManager {
     public final int NUM_FILES_EXPECTED;
-    private ConcurrentSkipListMap<Byte, FileBuilder> files;
+    private ConcurrentSkipListMap<Byte, FileBuilder> files = new ConcurrentSkipListMap<>();
     // ConcurrentSkipListMaps are able to add elements atomically.  This is useful,
     // because file input is frequently streamed in and it could be useful to be able
     // to process packets concurrently.  The map is sorted, which isn't actually
