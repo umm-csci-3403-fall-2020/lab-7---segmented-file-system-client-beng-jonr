@@ -1,9 +1,7 @@
 package packet;
 
 import java.io.ByteArrayOutputStream;
-import java.util.Arrays;
 import java.util.PriorityQueue;
-import java.util.stream.Stream;
 
 public class FileBuilder {
     protected PriorityQueue<BodyPacket> fileData = new PriorityQueue<BodyPacket>((BodyPacket x, BodyPacket y) ->  {return x.getPacketNumber() - y.getPacketNumber(); });

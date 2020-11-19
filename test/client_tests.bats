@@ -22,6 +22,8 @@ setup(){
       # (Re)compile the code
       rm -f segmentedfilesystem/*.class
       javac segmentedfilesystem/*.java
+      rm -f packet/*.class
+      javac packet/*.java
 
       # Run the client
       java segmentedfilesystem.Main localhost

@@ -154,7 +154,7 @@ public class FileBuilderTest {
         byte[][] allAdded = new byte[5][1024];
         //byte[] allAdded = new byte[1024*5];
 
-        int position = 0;
+        // int position = 0;
         for(int i = 0; i < 5; i++){
             r.nextBytes(fileData);
         
